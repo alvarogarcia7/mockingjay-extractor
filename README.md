@@ -10,6 +10,9 @@ This is a helper tool for [Mockingjay Server](https://github.com/quii/mockingjay
 
 ## Use case
 
+![How we use it](doc/mockingjay-explanation3.jpg "Use Case explanation")
+
+
   * You have a running mockingjay service
   * You want to add fake data to the fake service from a real service
   * You don't want to do it manually
