@@ -16,7 +16,7 @@ This is a helper tool for [Mockingjay Server](https://github.com/quii/mockingjay
   
 ## Usage
 
-Take a look at the `[run.bash](./run.bash)` file. The program requires:
+Take a look at the [`run.bash`](./run.bash) file. The program requires:
 
     * The URL containing `requests` JSON ([More info](https://github.com/quii/mockingjay-server/#inspect-what-requests-mockingjay-has-received))
     * The output file for the YAML
