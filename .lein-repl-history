@@ -1,0 +1,171 @@
+(:require [clojure.data.json :as json])
+(require 'clojure.data.json :as json)
+(require 'clojure.data.json :as 'json)
+(require 'clojure.data.json)
+(doc clojure.data.json/read)
+(with-open [rdr (clojure.java.io/reader "/tmp/foo.txt")]
+(with-open [rdr (clojure.java.io/reader "./resources/requests.json")]
+    (print (clojure.data.json/read rdr)))
+(def requests (with-open [rdr (clojure.java.io/reader "./resources/requests.json")]
+    (clojure.data.json/read rdr))
+)
+requests
+(first requests)
+("URI" (first requests))
+(get "URI" (first requests))
+(get (first requests) "URI")
+map #(-> {"URI" (get % "URI")}) requests 
+(count requests)
+(map #(-> {"URI" (get % "URI")}) requests)
+(map #(-> {"URI" (get % "URI"), "Method" (get % "Method"}) requests)
+(map #(-> {"URI" (get % "URI"), "Method" (get % "Method")}) requests)
+(map #(-> {"URI" (get % "Headers")}) requests)
+(map #(-> {"URI" (= {"Connection" "close"} (get % "Headers"))}) requests)
+(filter #(not= {"URI" true})) (map #(-> {"URI" (= {"Connection" "close"} (get % "Headers"))}) requests))
+(filter #(not= {"URI" true} %) (map #(-> {"URI" (= {"Connection" "close"} (get % "Headers"))}) requests))
+(filter #(not= {"Connection" "closed"} %) (map #(get % "Headers")) requests)
+(filter #(not= {"Connection" "closed"} %) (map #(get % "Headers") requests))
+(filter #(= {"Connection" "closed"} %) (map #(get % "Headers") requests))
+(require 'clj-yaml.core)
+(map #(-> {"URI" (= {"Connection" "close"} (get % "Headers"))}) requests)
+(map #(-> {"URI" (get % "URI"), "Method" (get % "Method"}) requests)
+(map #(-> {"URI" (get % "URI"), "Method" (get % "Method"}) requests))
+(map #(-> {"URI" (get % "URI"), "Method" (get % "Method")}) requests)
+(clj-yaml.core/generate-string (map #(-> {"URI" (get % "URI"), "Method" (get % "Method")}) requests))
+(def reqs (clj-yaml.core/generate-string (map #(-> {"URI" (get % "URI"), "Method" (get % "Method")}) requests)))
+(with-open [w (clojure.java.io/writer  "./processed.yaml" :append true)] (.write w reqs))
+(defn 
+  read-from
+  [filename]
+  (with-open [rdr (clojure.java.io/reader filename)]
+    (clojure.data.json/read rdr)))
+(defn
+  write-to 
+  [filename text]
+  (with-open [w (clojure.java.io/writer  filename)]
+    (.write w text)))
+(defn
+  process-single
+  [request]
+  {
+    "URI" (get request "URI"),
+    "Method" (get request "Method")
+  })
+;; returns a clj structure
+(defn process
+  [json]
+  (map process-single requests))
+(defn to-yaml
+  [structure]
+  (clj-yaml.core/generate-string structure))
+(defn main
+  [filename]
+  (write-to "./output-auto.yaml"
+    (to-yaml
+      (process
+        (read-from filename)))))
+(defn main-
+  [filename]
+  (->> filename
+    read-from
+    process
+    to-yaml
+(require '[clj-yaml.core :as yaml])
+(require '[clojure.data.json :as json])
+(defn 
+  read-from
+  [filename]
+  (with-open [rdr (clojure.java.io/reader filename)]
+    (json/read rdr)))
+(defn
+  write-to 
+  [filename text]
+  (with-open [w (clojure.java.io/writer  filename)]
+    (.write w text)))
+(defn
+  process-single
+  [request]
+  {
+    "URI" (get request "URI"),
+    "Method" (get request "Method")
+  })
+;; returns a clj structure
+(defn process
+  [json]
+  (map process-single requests))
+(defn to-yaml
+  [structure]
+  (yaml/generate-string structure))
+(defn main
+  [filename]
+  (write-to "./output-auto.yaml"
+    (to-yaml
+      (process
+        (read-from filename)))))
+(defn main-
+  [filename]
+  (->> filename
+    read-from
+    process
+    to-yaml
+    (write-to "./output-auto.yaml")))
+(defn process
+  [json]
+  (map process-single json))
+(main "./resources/requests.json")
+(defn main
+  [filename]
+  (write-to "./output-automain.yaml"
+    (to-yaml
+      (process
+        (read-from filename)))))
+(defn main-
+  [filename]
+  (->> filename
+    read-from
+    process
+    to-yaml
+    (write-to "./output-automain-.yaml")))
+(main "./resources/requests.json")
+(main- "./resources/requests.json")
+(load-file "src/simple/core.clj")
+requests
+(def read-from "./resources/requests.json")
+(load-file "src/simple/core.clj")
+(def requests (read-from "./resources/requests.json"))
+requests
+(def r1 (first requests))
+r1
+(process-single r1)
+(->> r1 process-single to-yaml)
+(load-file "src/simple/core.clj")
+(->> r1 process-single to-yaml (write-to "./test.yaml"))
+r1
+(get r1 "URI")
+(str "a" "b)"
+(str "a" "b")
+(require '[clj-http.client :as client])
+(client/get "https://httpbin.org/get")
+(get (client/get "https://httpbin.org/get") "body")
+(get (client/get "https://httpbin.org/get") :body)
+(get (client/get "https://httpbin.org/get") :body "url")
+(load-file "src/simple/core.clj")
+(def requests (read-from "./resources/requests.json"))
+(def r1 (first requests))
+r1
+(process-single r1)
+(load-file "src/simple/core.clj")
+dedupe
+(doc dedupe)
+(doc set)
+(filter #(= (:a %) :b) [{:a :b}, {:a :c}})
+(filter #(= (:a %) :b) [{:a :b}, {:a :c}])
+(first (filter #(= (:a %) :b) [{:a :b}, {:a :c}]))
+(load-file "src/simple/core.clj")
+(set [:a :b])
+(set '(:a :b))
+(uniq '(:a :b))
+(set '(:a :b))
+(set '(:a :b :a))
+(set '(:a :b :a :b))
+(load-file "src/simple/core.clj")
