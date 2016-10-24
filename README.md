@@ -11,6 +11,6 @@ This is a helper tool for [Mockingjay Server](https://github.com/quii/mockingjay
 ## Use case
 
   * You have a running mockingjay server
-  * You want to add fake data to the server
+  * You want to add fake data to the fake server from a real server
   * You don't want to do it manually
   
