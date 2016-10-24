@@ -74,5 +74,4 @@
     read-from
     (process server-prefix)
     to-yaml
-        first-payload-by-url (fn [url] (first (filter #(= (get "URI" %) url) requests)))]
     (write-to output)))
