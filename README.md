@@ -12,6 +12,8 @@ This is a helper tool for [Mockingjay Server](https://github.com/quii/mockingjay
 
 ![How we use it](doc/mockingjay-explanation3.jpg "Use Case explanation")
 
+Note: the property reads: for every request captured in Service A', the generated Service A'' will have the same response as Service A
+
 
   * You have a running mockingjay service
   * You want to add fake data to the fake service from a real service
